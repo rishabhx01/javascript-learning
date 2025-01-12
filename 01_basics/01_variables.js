@@ -20,3 +20,5 @@ console.table([accountId, accountEmail, accountPassword, accountCity, accountSta
 Prefer not to use var
 because of issues in block scope and functional scope
 */
+/*you can see also that accountState is showing undefined because 
+we have not defined it or given any input to it.*/
