@@ -1,4 +1,4 @@
-// Number to String Conversion :
+// String to Number Conversion :
 
 
 //let score = "33"
@@ -18,7 +18,7 @@ console.log(valueInNumber);
 let score1 = null
 console.log(typeof score1);                 //output => object
 let valueInNumber1 = Number(score1)
-console.log(typeof valueInNumber);          //output => number
+console.log(typeof valueInNumber1);          //output => number
 console.log(valueInNumber1);                //output => we are checking what is in valueInNumber1 so it is 0.
 
 
