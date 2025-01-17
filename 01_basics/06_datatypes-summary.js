@@ -66,8 +66,46 @@ console.log(typeof bigNumber);     // Output - bigint
 
 console.log(typeof heros);        // Output - Object 
 console.log(typeof myObj);        // Output - Object
-console.log(typeof myFunction);   // Output - function ,, we say this object function 
+console.log(typeof myFunction);   // Output - function ,, we say this object-function 
 
 // https://262.ecma-international.org/5.1/#sec-11.4.3 .. read this article.
 
 
+/****************************************** MEMORY ************************************************************/
+
+console.log("Let's Study about Memory : ")
+
+// There are two types of memomry :
+// Stack Memory used in (Primitive Datatypes) , Heap Memory used in (Non-Primitive Datatypes)
+
+// Whenever stack memory is used, we get a copy of the variable we created.
+
+/* Whenever heap memory is used, or anything is defined in the heap, you get a reference 
+to the original value. Therefore, any changes you make will affect the original value.*/
+
+// Example for Stack
+
+let myYoutubename = "gigachadcodes"
+
+let anothername = myYoutubename
+anothername = "rishimunicodes"
+
+console.log(myYoutubename);
+console.log(anothername);
+
+// Example for Heap :
+
+let userOne = {
+    email: "user@google.com",
+    upi: "user@ybl"
+}
+
+let userTwo = userOne
+
+userTwo.email = "rishabh@google.com"  // by using . we can access object userTwo.email , userTwo.upi 
+
+console.log(userOne.email);
+console.log(userTwo.email);
+
+
+// Lecture 09 and 10 Finished.
