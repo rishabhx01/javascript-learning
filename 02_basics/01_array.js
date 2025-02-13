@@ -15,6 +15,7 @@ console.log(myArr[2]);  // This is the way of accessing an element of the array.
 
 // arrays are zero-indexed: the first element of an array is at index 0, the second is at index 1, and so on.
 // JavaScript array-copy operations create shallow copies. // Read about shallow copies in Documentation.
+// https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy
 
 // Ways of Declaring Arrays :
 
@@ -33,7 +34,7 @@ console.log(myHeros.length);    // Output - 6
 
 const myArray = [0, 1, 2, 3, 4, 5]
 
-myArray.push(6)
+myArray.push(6)          // Add the value in array
 myArray.push(7)
 console.log(myArray);    // Output - [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 
@@ -61,16 +62,24 @@ console.log(typeof newArray);        // Output - string
 
 // Slice, Splice
 
-console.log("A ", myArray);
+console.log("A ", myArray);            // A is Original Array
+// Output - A [9, 1, 2, 3, 4, 5, 6]
 
 const myn1 = myArray.slice(1, 3)
 
-console.log(myn1);
+console.log(myn1);                    // B where we used slice
+// Output - [ 1, 2 ]
+
 console.log("B ", myArray);
+// Output - B [9, 1, 2, 3, 4, 5, 6]
 
 
-const myn2 = myArray.splice(1, 3)
-console.log("C ", myArray);
-console.log(myn2);
+const myn2 = myArray.splice(1, 3)    // C where we used splice .. see the difference in output of A,B,C
 
+console.log("C ", myArray);          // Output - C  [ 9, 4, 5, 6 ]
+console.log(myn2);                   // Output - [ 1, 2, 3 ]
+
+
+// Read Documentation and Write difference in Slice and Splice .. Interview Perspective
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 
