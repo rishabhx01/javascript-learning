@@ -101,7 +101,7 @@ but if you use parenthesis () no need to write return keyword .... important tec
 
 
 
-// Returning Object without parenthesis and with parenthesis
+// Returning Object without parenthesis and with parenthesis.
 /*
 const returnObject = () => {username: "rishabh"}
 console.log(returnObject())                                  // Output - undefined
@@ -111,4 +111,13 @@ const returnObject = () => ({username: "rishabh"})
 console.log(returnObject())                                  // Output - { username: 'rishabh' }
 
 // so without () it will return undefined and with () it will return { username: 'rishabh' }
-// To return object you have to wrap them in parenthesis
+// To return object you have to wrap them in parenthesis.
+
+
+
+const myArray = [2, 5, 3, 7, 8]
+
+myArray.forEach(() => {})                // Arrow Function
+myArray.forEach( function () {})         // Classic Function
+// We will discuss this later.
+// Lecture 23 Done.
