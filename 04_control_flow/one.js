@@ -1,6 +1,6 @@
 // 25 lectures are completed .. This is Lecture 26
 // Try to finish what you started ASAP .. then move on projects.
-// Real learning comes from by building projects .. all by ypurself.
+// Real learning comes by building projects .. all by yourself.
 
 // So all the basic stuff of Javascript are done.
 
@@ -54,7 +54,7 @@ if ( temperature < 50 ){
 }
 console.log("temperature is greater than 50")        // Output - temperature is greater than 50
 
-both get executed so that's the problem that's why we have else.
+both get executed so that's the problem that's why we have Else.
 */
 
 if ( temperature < 50 ){
@@ -124,3 +124,4 @@ if (loggedInFromGoogle || loggedInFromEmail) {                // OR .. anyone sh
     console.log("User logged In")
 }
 
+// Next topic switch
