@@ -37,3 +37,16 @@ do {
 } while (score <= 10);
 
 // Lecture 28 Completed.
+
+/*
+Interview Perspective :
+
+while Loop:
+The condition is checked first; if it's true, the loop executes.
+If the condition is false from the start, the loop will never run.
+
+do...while Loop
+The code executes first, even if the condition is false.
+Then, the condition is checked. If true, the loop continues; otherwise, it stops.
+This will run at least once!
+*/
