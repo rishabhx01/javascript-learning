@@ -30,11 +30,348 @@ console.log(document.links)
     <meta charset="UTF-8">
     
     <title>DOM Learning</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
 </head>
-<body>
-    <div class="bg-black">
-        <h1 class="heading">DOM Learning on Chai aur Code</h1>
+<body class="bg-black">
+    <div>
+        <h1 id="title" class="heading">DOM Learning on Chai aur Code <span style="display: none;">test text</span></h1>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
         <p>Lorem ipsum dolor sit, amet.</p>
+        <input type="password" name="" id="">
+
+        <ul>
+            <li class="list-item">one</li>
+            <li class="list-item">two</li>
+            <li class="list-item">three</li>
+            <li class="list-item">four</li>
+            
+        </ul>
     </div>
 </body>
 </html>
+
+
+<!--  
+📌 DOM Manipulation Study Notes  
+
+🔹 document.getElementById('title')  
+   - Selects the element with the ID "title".  
+
+🔹 document.getElementById('title').id  
+   - Retrieves the "id" of the selected element.  
+
+🔹 document.getElementById('title').class  
+   - ❌ Incorrect! This will return undefined. Use **className** instead.  
+
+🔹 document.getElementById('title').className  
+   - Retrieves the class name of the selected element.  
+
+🔹 document.getElementById('title').getAttribute()  
+   - ❌ Incorrect! This will throw an error because `getAttribute()` requires an argument.  
+   - **Correct usage:** `document.getElementById('title').getAttribute('id')`  
+
+🔹 document.getElementById('title').getAttribute('id')  
+   - Retrieves the value of the "id" attribute (e.g., "title").  
+
+🔹 document.getElementById('title').getAttribute('class')  
+   - Retrieves the value of the "class" attribute (e.g., "heading").  
+
+🔹 document.getElementById('title').setAttribute('class', 'test')  
+   - Overwrites the existing class with "test".  
+   - **⚠ Warning:** This will replace all previous class names.  
+
+🔹 const title = document.getElementById('title')  
+   - Stores the selected element in a variable for easier manipulation.  
+
+🔹 Styling using JavaScript:  
+   ```js
+   title.style.backgroundColor = 'green';  // Changes background color  
+   title.style.padding = '15px';           // Adds padding  
+   title.style.borderRadius = '15px';      // Rounds the corners  
+-->
+
+
+
+
+<!--  
+📌 DOM Text Content Study Notes  
+
+🔹 title.innerText  
+   - Returns only the **visible** text inside the element.  
+   - **Example Output:** `'DOM Learning on Chai aur Code'`  
+   - **⚠ Note:** Ignores hidden text (e.g., `display: none;`).  
+
+🔹 title.textContent  
+   - Returns **all** text inside the element, including hidden content.  
+   - **Example Output:** `'DOM Learning on Chai aur Code test text'`  
+
+🔹 title.innerHTML  
+   - Returns the **HTML structure** inside the element, including tags.  
+   - **Example Output:** `'DOM Learning on Chai aur Code <span style="display: none;">test text</span>'`  
+
+📌 **1-Line Difference:**  
+- **`innerText`**: Returns only visible text.  
+- **`textContent`**: Returns all text, even if hidden.  
+- **`innerHTML`**: Returns HTML with tags.  
+
+✨ **Before Adding Hidden Text:**  
+   - All three methods output `'DOM Learning on Chai aur Code'`.  
+
+✨ **After Adding `<span style="display: none;">test text</span>`:**  
+   - **`innerText`** remains the same (ignores hidden text).  
+   - **`textContent`** includes the hidden text.  
+   - **`innerHTML`** shows the HTML, including `<span>`.  
+-->
+
+
+
+
+<!--  
+📌 DOM Element Selection Study Notes  
+
+🔹 document.getElementsByClassName('heading')  
+   - Selects **all elements** with the class `"heading"`.  
+   - Returns an **HTMLCollection** (live collection, updates when DOM changes).  
+   - **Example Output:** `[h1.heading]` (if only one `<h1>` has the class).  
+
+🔹 document.querySelector('h2')  
+   - Selects the **first** `<h2>` element in the document.  
+   - Returns `null` if no `<h2>` is found.  
+
+🔹 document.querySelectorAll('h2')  
+   - Selects **all** `<h2>` elements in the document.  
+   - Returns a **NodeList** (static collection, doesn’t update dynamically).  
+   - **Example Output:** `NodeList(2) [h2, h2]` (if there are two `<h2>` elements).  
+
+🔹 document.querySelector('#title')  
+   - Selects the element with `id="title"`.  
+   - **Equivalent to:** `document.getElementById('title')`.  
+
+🔹 document.querySelector('.heading')  
+   - Selects the **first** element with the class `"heading"`.  
+   - **Example Output:** `<h1 id="title" class="heading">DOM Learning on Chai aur Code</h1>`.  
+
+🔹 document.querySelector('input[type="password"]')  
+   - Selects the **first** `<input>` element with `type="password"`.  
+   - Useful for selecting form fields dynamically.  
+
+📌 **Key Differences:**  
+- `getElementsByClassName()` → Returns **live** HTMLCollection, updates when DOM changes.  
+- `querySelector()` → Returns **only the first** matching element.  
+- `querySelectorAll()` → Returns **all** matching elements as a **NodeList** (static).  
+-->
+
+
+
+
+<!--  
+📌 Selecting & Modifying List Items in the DOM  
+
+🔹 document.querySelector('ul')  
+   - Selects the **first** `<ul>` element in the document.  
+
+🔹 const myul = document.querySelector('ul')  
+   - Stores the selected `<ul>` element in the `myul` variable for easier access.  
+
+🔹 myul.querySelector('li')  
+   - Selects the **first** `<li>` inside the `<ul>`.  
+
+🔹 const turnGreen = myul.querySelector('li')  
+   - Stores the first `<li>` element in the `turnGreen` variable.  
+
+🔹 turnGreen.style.backgroundColor = "green"  
+   - Changes the background color of the first `<li>` to green.  
+
+🔹 turnGreen.style.padding = "10px"  
+   - Adds `10px` padding to the first `<li>` for better spacing.  
+
+🔹 turnGreen.innerText  
+   - Retrieves the current text inside the first `<li>`.  
+   - **Example Output:** `"one"`.  
+
+🔹 turnGreen.innerText = "five"  
+   - Changes the text from `"one"` to `"five"`.  
+
+📌 **Final Effect:**  
+- The first `<li>` (originally `"one"`) turns **green**, gets extra padding, and its text changes to `"five"`.  
+-->
+
+
+
+
+<!--  
+📌 Working with NodeList & HTMLCollection  
+
+🔹 document.querySelectorAll('li')  
+   - Selects **all** `<li>` elements in the document.  
+   - Returns a **NodeList** (not a pure array).  
+
+🔹 const tempList = document.querySelectorAll('li')  
+   - Stores the NodeList of `<li>` elements in the `tempList` variable.  
+   - **Example Output:** `NodeList(3) [li, li, li]`.  
+
+🔹 **Difference between NodeList & HTMLCollection:**  
+   - **They are not pure arrays.**  
+   - Check available methods using `console.dir(tempList)`.  
+   - **NodeList supports `.forEach()`, but does not support `.map()`.**  
+
+🔹 const myArr = [1, 2, 3, 4]  
+   - This is a pure JavaScript array and supports `.map()`, `.filter()`, etc.  
+
+🔹 tempList.style.color = 'green'  
+   - ❌ **Error!** Cannot directly set styles on a NodeList.  
+   - **Correct Way:** Modify individual elements using indexing.  
+
+🔹 tempList[0].style.color = 'green'  
+   - ✅ Changes the text color of the **first `<li>`** to green.  
+
+🔹 tempList[1].style.backgroundColor = 'green'  
+   - ✅ Changes the background color of the **second `<li>`** to green.  
+
+📌 **Key Learning Points:**  
+- **NodeList & HTMLCollection are not arrays.** Use loops or `Array.from()` to convert them.  
+- **To modify styles, select individual elements using indexing (`tempList[i]`).**  
+- **Use `forEach()` on a NodeList to apply changes to multiple elements.**  
+
+✨ **Example Using forEach:**  
+```js
+tempList.forEach(item => item.style.color = "blue");
+<!--  
+📌 Difference Between querySelector & querySelectorAll  
+
+🔹 const myH1 = document.querySelectorAll('h1')  
+   - Selects **all** `<h1>` elements in the document.  
+   - Returns a **NodeList**, even if there's only one `<h1>`.  
+   - **Example Output:** `NodeList [h1#title.heading]`.  
+
+🔹 myH1.style.color = 'green'  
+   - ❌ **Error!** Cannot directly apply styles to a NodeList.  
+   - **Why?** Because `querySelectorAll()` returns a **NodeList**, not a single element.  
+
+🔹 myH1[0].style.color = 'green'  
+   - ✅ Works correctly because we are selecting the first `<h1>` from the NodeList.  
+   - **Now the text color of the first `<h1>` turns green.**  
+
+📌 **Key Difference Between querySelector & querySelectorAll:**  
+| Method                | Return Type  | Behavior | Example Usage |  
+|----------------------|-------------|--------------------------------------|-----------------------------|  
+| `querySelector()`    | **Single Element**  | Returns the **first** matching element | `document.querySelector('h1')` |  
+| `querySelectorAll()` | **NodeList** | Returns **all** matching elements | `document.querySelectorAll('h1')` |  
+
+📌 **Important Learning:**  
+- `querySelector()` returns **a single element**, so you can directly apply styles.  
+- `querySelectorAll()` returns **a NodeList**, so you must use indexing (`myH1[0]`) or loop through it.  
+
+✨ **Example Using forEach to Change Color for All `<h1>`:**  
+```js
+myH1.forEach(h1 => h1.style.color = "blue");
+-->
+
+
+
+<!--  
+📌 Working with NodeList & forEach in JavaScript  
+
+🔹 **document.querySelectorAll('li')**  
+   - Selects **all** `<li>` elements in the document.  
+   - Returns a **NodeList** (not an array).  
+
+🔹 **const tempList = document.querySelectorAll('li')**  
+   - Stores the NodeList of `<li>` elements in `tempList`.  
+   - **Example Output:** `NodeList(3) [li, li, li]`.  
+
+🔹 **NodeList Methods (Check Using `console.dir(tempList)`)**  
+   - `.forEach() ✅` → Available for looping through elements.  
+   - `.map() ❌` → Not available (since it's not an array).  
+   - `.item(index)` → Access elements like `tempList.item(0)`.  
+
+🔹 **Applying `forEach()` to Change Background Color**  
+
+✅ **Correct Approach Using a Function Expression:**  
+```js
+tempList.forEach(function (l) {
+    l.style.backgroundColor = "green";
+});
+
+❌ Incorrect Code:
+tempList.forEach(li => return li.style.backgroundColor = "red");
+
+Error Reason:
+Arrow functions with a single expression do not require the return keyword.
+If using return, the function body must be inside {} (curly braces).
+
+
+✅ Without return (Implicit Return):
+tempList.forEach(li => li.style.backgroundColor = "red");
+✅ This works because arrow functions automatically return single expressions without {}.
+
+
+
+✅ Corrected Version Using {} and Explicit return:
+tempList.forEach(li => { 
+    return li.style.backgroundColor = "red"; 
+});
+✅ This works, but return is unnecessary since .forEach() does not expect a return value.
+-->
+
+
+
+
+
+<!-- 
+📌 Working with getElementsByClassName and forEach() in JavaScript 
+
+🔹 document.getElementsByClassName('list-item') 
+   - Selects all elements with the class "list-item". 
+   - Returns an HTMLCollection, not an array. 
+
+❌ Problem: HTMLCollection does not have .forEach() directly! 
+
+❌ Incorrect Code - Causes an Error 
+   ```js
+   const tempClassList = document.getElementsByClassName('list-item');
+
+   tempClassList.forEach(function(li) {
+       console.log(li);
+   });
+
+❌ Error: tempClassList.forEach is not a function
+🔸 This happens because HTMLCollection does not support .forEach() like a NodeList or an array.
+
+✅ Solution - Convert HTMLCollection to an Array First:
+
+const tempClassList = document.getElementsByClassName('list-item');  
+const myConvertedArray = Array.from(tempClassList);  // ✅ Convert to Array  
+
+myConvertedArray.forEach(function(li) {
+    li.style.color = 'orange';  // ✅ Works now
+});
+
+
+✔ Why does this work?
+Array.from(tempClassList) converts the HTMLCollection into a real array that supports .forEach().
+
+🚀 Alternative Using Spread Operator (...)
+
+const myConvertedArray = [...document.getElementsByClassName('list-item')];  
+
+myConvertedArray.forEach(li => li.style.color = 'orange');  // ✅ Works
+✔ The spread operator (...) spreads the collection into an array.
+
+
+📌 Key Learning Points
+1️ getElementsByClassName() returns an HTMLCollection, not an array.
+2️ HTMLCollection does NOT support .forEach().
+3️ Convert it into an array using Array.from() or [...collection].
+4️ Use .forEach() on the converted array to modify elements.
+-->
+
+<!--Lecture 32 Completed. -->
+
