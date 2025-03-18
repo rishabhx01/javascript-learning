@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur Code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <div class="day"> Monday </div>
+        <div class="day"> Tuesday </div>
+        <div class="day"> Wednesday </div>
+        <div class="day"> Thursday </div> 
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    console.log(parent);
+    console.log(parent.children);                           // HTMLCollection(4) [div.day, div.day, div.day, div.day]
+    console.log(parent.children[1]);
+    console.log(parent.children[1].innerHTML);
+    console.log(parent.children[1].textContent.trim());            // Output: "Tuesday"
+
+
+    // Let's execute loop on HTML Collection .. but we know loop doesn't work with HTML Collection but classic loop like for should work let's try.
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML);
+        
+    }
+    parent.children[1].style.color = "orange"
+    console.log(parent.firstElementChild)                  // <div class="day"> Monday </div>
+    console.log(parent.lastElementChild)
+
+    // Traversing from Parent Node to Child Node, Child Node to Parent Node , Sibling Node.
+
+    const dayOne = document.querySelector('.day')
+    console.log(dayOne);
+
+    /* 
+    The DOM (Document Object Model) is a tree data structure, where each element is a node. 
+    Since querySelector has to traverse this tree to find elements, it can be relatively expensive in terms of performance, 
+    especially when used frequently or on large DOMs.
+
+    
+    How to Optimize DOM Selection?
+    Use Faster Methods When Possible:
+    
+    ✅ getElementById('myId') → Fastest (Direct ID lookup)
+    ✅ getElementsByClassName('myClass') → Faster than querySelectorAll (live collection)
+    ✅ getElementsByTagName('div') → Faster when searching for tags
+    ❌ querySelector('.myClass') → Slower than the above for large DOMs
+    */
+
+    console.log(dayOne.parentElement);
+    console.log(dayOne.nextElementSibling);
+
+
+    console.log("NODES: ", parent.childNodes)   // NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+
+    // Now you are thinking why NodeList is (9) not (4) because When you log parent.childNodes, you get a NodeList(9) instead of (4) 
+    // because the browser includes text nodes for whitespace (indentation, line breaks, and spaces).
+    
+    // How to Get Only Elements (Ignore Text Nodes)
+    console.log("CHILDREN: ", parent.children);
+
+    // Till now we studied about traversing.
+
+
+</script>
+</html>
+
+
+<!-- 
+    📌 Summary: What I Studied (DOM Traversal & Optimization)
+
+    ✅ Selecting Elements in the DOM:
+        - querySelector('.parent') → Selects the first element with the class.
+        - parent.children → Gets only child elements (HTMLCollection).
+
+    ✅ Accessing and Modifying Child Elements:
+        - parent.children[index] → Access a specific child.
+        - .innerHTML vs .textContent.trim() → Get HTML or pure text.
+        - Modify styles dynamically → element.style.color = "orange".
+
+    ✅ Looping Through Child Elements:
+        - for loop works on HTMLCollection.
+    
+    ✅ Navigating the DOM:
+        - firstElementChild / lastElementChild → First & last child elements.
+        - parentElement → Moves from child to parent.
+        - nextElementSibling → Moves to the next sibling.
+
+    ✅ Difference Between childNodes vs children:
+        - childNodes → Includes elements + text nodes (whitespace).
+        - children → Includes only element nodes (useful in most cases).
+
+    ✅ Performance Optimization:
+        - getElementById('id') ✅ Fastest
+        - getElementsByClassName('class') ✅ Faster
+        - getElementsByTagName('div') ✅ Faster for bulk selection
+        - querySelector('.class') ❌ Slower for large DOMs (tree traversal)
+-->

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code | Lec - 33</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+<script>
+    const div = document.createElement('div')
+    console.log(div);
+
+    // Let's add some properties in this div element
+    div.className = "main"
+    div.id = Math.random() * 10 + 1
+    div.id = Math.round(Math.random() * 10 + 1)
+
+    // There are some attributes which are by default like class , name and ids
+
+    //But what if you have to set some custom attributes ---> setAttribute  --> 
+    // In setAttribute you have to provide attribute in the form of key - value.
+    div.setAttribute("title", "Generate a title")
+
+    // You can add styling also.
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+
+    // Que- Why it's not displaying on the page ?
+    // Because the div we are created is right now in the memory to display it on the page we have to tell the document to attach this child.
+
+    // So let's see how attaching happens:
+
+    // div.innerText = "Rishabh Don't Give up"                           
+
+    const addText = document.createTextNode("Rishabh Don't Give up")
+    div.appendChild(addText)
+
+    document.body.appendChild(div)
+</script>
+
+</html>
+
+<!-- Lecture 33 Done -->
+
+<!-- 
+    📌 Summary: Understanding DOM Manipulation in JavaScript
+
+    ✅ The DOM (Document Object Model) is a tree-like structure that represents an HTML document in memory.
+    ✅ JavaScript allows dynamic modifications to this structure without reloading the page.
+
+    🛠 What Happens in This Code:
+    
+    1️ Creating an Element (Not Yet Attached)
+        - document.createElement('div') → Creates a <div> in memory (not in the DOM yet).
+
+    2️ Modifying the Element
+        - div.className = "main" → Adds a CSS class.
+        - div.id = Math.round(Math.random() * 10 + 1) → Assigns a random ID.
+        - div.setAttribute("title", "Generate a title") → Adds a custom attribute.
+
+    3️ Styling the Element
+        - div.style.backgroundColor = "green" → Changes background color.
+        - div.style.padding = "12px" → Adds padding.
+
+    4️ Adding Content Inside the div
+        - createTextNode("Rishabh Don't Give up") → Creates a text node.
+        - appendChild(addText) → Inserts the text inside the div.
+
+    5️ Attaching the div to the DOM (Making It Visible)
+        - document.body.appendChild(div) → Adds the div to the document so it's rendered.
+
+    🌳 DOM Tree Changes:
+        - Before appending: <body></body>
+        - After appending: 
+            <body>
+                <div class="main" id="randomNumber" title="Generate a title" style="background-color: green; padding: 12px;">
+                    Rishabh Don't Give up
+                </div>
+            </body>
+
+    🔍 Why Wasn’t It Displaying Initially?
+        - The div was only in memory, not in the DOM.
+        - It became visible only after being appended to document.body.
+
+    🎯 Key DOM Concepts Used:
+        - createElement → Creates an element.
+        - setAttribute → Adds/modifies an attribute.
+        - appendChild → Adds a node to another node.
+        - createTextNode → Creates text inside an element.
+        - style property → Dynamically applies inline CSS.
+
+-->
