@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code || DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+
+</body>
+<script>
+    // Now Add one more list item by making function .. we don't know how many languages we are going to add so let's make function.
+    function addLanguage (langName) {
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+    // Now the way we are attaching a language creates an optimization problem. 
+    // For example, at this moment, the list had only one value: "JavaScript." 
+    // But imagine if there were 1,000 or 100,000 items—we only need to attach the new language at the end.
+    // However, every time the addLanguage() function runs, it traverses the entire tree, which leads to an optimization issue.
+
+    // Optimized Method:
+    function addOptiLanguage (langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage("golang")
+
+
+
+    // Until Now we have studied about how to add values.
+    // Let's study about how to Edit them.
+
+    const secondLang = document.querySelector("li:nth-child(2)")
+   // secondLang.innerHTML = "Mojo"
+   
+   // Another and optimized way:
+   const newli = document.createElement('li')
+   newli.textContent = "Mojo"
+   secondLang.replaceWith(newli)
+
+
+   // Edit
+   const firstLang = document.querySelector("li:first-child")
+   firstLang.outerHTML = '<li>TypeScript</li>'
+
+   //remove
+   const lastLang = document.querySelector("li:last-child")
+   lastLang.remove()
+
+</script>
+</html>
+
+<!-- Lecture - 34 Done. Study about DOM, querySelector, nodeList from MDN or W3School -->
+
+<!-- 
+Summary of Lecture 34 - DOM Manipulation
+
+1. **Adding Elements to the DOM**  
+   - Created a function `addLanguage(langName)` to dynamically add new `<li>` elements to the list.  
+   - Identified an optimization issue where each function call causes tree traversal.  
+   - Implemented `addOptiLanguage(langName)`, which uses `document.createTextNode()` for better performance.  
+
+2. **Editing Elements in the DOM**  
+   - Used `querySelector("li:nth-child(2)")` to target the second item and replace it with a new `<li>` element using `replaceWith()`.  
+   - Optimized editing by using `outerHTML` to directly replace the first `<li>` element.  
+
+3. **Removing Elements from the DOM**  
+   - Used `querySelector("li:last-child")` to select and remove the last `<li>` element using `.remove()`.  
+
+4. **Best Practices Learned**  
+   - Avoid unnecessary DOM traversals for better performance.  
+   - Use `createTextNode()` instead of `innerHTML` when possible.  
+   - Use `replaceWith()` and `outerHTML` for efficient updates.  
+   - Always test DOM changes in large lists to measure performance impact.  
+
+-->  
