@@ -86,7 +86,7 @@ form.addEventListener('submit', function(e){
   }
 
     /*  // Check your mistake....
-    
+
     if (bmi < 18.6){
       results.innerHTML = `Under weight ${bmi}`;
     } else if (bmi <= 24.9) {
@@ -103,5 +103,34 @@ form.addEventListener('submit', function(e){
   }
 
 })
+
+```
+
+## Project 3 - Digital Clock
+
+```javascript
+
+const clock = document.getElementById('clock')
+// const clock = document.querySelector('#clock')
+
+// It is a digital clock so it should change at every second
+
+
+/*
+setInterval() is a JavaScript function that repeatedly executes a specified function at a fixed time interval. It is asynchronous, meaning it does not block the execution of other code.
+*/
+
+/*
+setInterval() runs a function repeatedly at a fixed interval.
+Time is given in milliseconds (ms).
+Use clearInterval(id) to stop it.
+*/
+
+
+setInterval( function (){
+  let date = new Date()
+  // console.log(date.toLocaleTimeString());
+  clock.innerHTML = date.toLocaleTimeString();
+}, 1000)
 
 ```
