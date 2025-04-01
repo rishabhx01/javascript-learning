@@ -49,3 +49,59 @@ buttons.forEach( function (button) {     // because we have nodeList so we can a
 
 
 ```
+## Project 2 - BMI Calculator
+
+```javascript
+
+// First we need to select form .. because the submit or calculate button is in the form.
+// const height = parseInt(document.querySelector('#height').value)
+// this usecase will give you empty 
+
+const form = document.querySelector('form')
+
+// whenever form get submitted it is submitted by post type or get type.
+
+form.addEventListener('submit', function(e){
+  e.preventDefault()
+
+  const height = parseInt(document.querySelector('#height').value) // value parsed into integer
+  const weight = parseInt(document.querySelector('#weight').value)
+  const results = document.querySelector('#results')
+
+  if(height === '' || height < 0 || isNaN(height)){
+    results.innerHTML = `Please give a valid height ${height}`;
+  } else if(weight === '' || weight < 0 || isNaN(weight)){
+    results.innerHTML = `Please give a valid weight ${weight}`;
+  } else {
+    const bmi = (weight  / ((height*height)/10000)).toFixed(2)
+
+    let category = '';
+
+  if (bmi < 18.6) {
+    category = `Underweight`;
+  } else if (bmi <= 24.9) {
+    category = `Normal Range`;
+  } else {
+    category = `Overweight`;
+  }
+
+    /*  // Check your mistake....
+    
+    if (bmi < 18.6){
+      results.innerHTML = `Under weight ${bmi}`;
+    } else if (bmi <= 24.9) {
+      results.innerHTML = `Normal Range ${bmi}`;
+    } else {
+      results.innerHTML = `Overweight ${bmi}`;
+    }
+    */
+
+
+  // Show both BMI value and category
+  results.innerHTML = `<span>${category}: ${bmi}</span>`;
+
+  }
+
+})
+
+```
