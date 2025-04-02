@@ -134,3 +134,132 @@ setInterval( function (){
 }, 1000)
 
 ```
+
+## Project 4 - Guess the Number
+
+```javascript
+// First we need to generate a random number to generate a random number we will use Math Library
+
+let randomNumber = parseInt(Math.random() * 100 + 1); 
+
+const submit = document.querySelector('#subt');
+const userInput = document.querySelector('#guessField');
+const guessSlot = document.querySelector('.guesses');
+const remaining = document.querySelector('.lastResult');
+const lowOrHi = document.querySelector('.lowOrHi');
+const startOver = document.querySelector('.resultParas');
+
+const p = document.createElement('p')
+
+let prevGuess = []   // for previous guessed value .. this is array
+let numGuess = 1     // Number of attempts or guesses  .. starting from 1
+
+let playGame = true;
+
+// Check you are available for playing game or not
+if (playGame) {
+  submit.addEventListener('click', function (e){
+    e.preventDefault();
+    const guess = parseInt(userInput.value);
+    console.log(guess);
+    validateGuess(guess);
+  });
+}
+
+
+
+
+// First Function
+// for checking user giving number not a, b, c 
+// then we will check value should not be negative
+// then we will check range it should 1 to 100
+// this all the validation we will perform in this metthod
+function validateGuess(guess) {
+  if(isNaN(guess)) {
+    alert('Please enter a valid number')
+  } else if (guess < 1) {
+    alert('Please enter a number more than 1')
+  } else if (guess > 100) {
+    alert ('Please enter a number less than 100')
+  } else {
+    prevGuess.push(guess)
+    if(numGuess === 11){     // let numGuess = 1 we have taken this above as global scoping
+      displayGuess(guess)
+      displayMessage(`Game Over. Random number was ${randomNumber}`)
+      endGame()
+    } else {
+      displayGuess(guess)
+      checkGuess(guess)
+    }
+  }
+}
+
+
+
+
+// Second Function
+// earlier we only validated the values
+// here we will print messages
+// Guessed value is high, low or correct this all will be done in this method.
+function checkGuess (guess) {
+  if(guess === randomNumber) {
+    displayMessage(`You guessed it right`)
+    endGame()
+  } else if (guess < randomNumber){
+    displayMessage(`Number is TOOO low`)
+
+  } else if (guess > randomNumber){
+    displayMessage(`Number is TOOO high`)
+  } 
+}
+
+
+
+// Third Function
+function displayGuess(guess) {
+  userInput.value = ''                   // cleaning up method
+  guessSlot.innerHTML += `${guess}  `
+  numGuess++;
+  remaining.innerHTML = `${11 - numGuess} `
+}
+
+
+
+
+
+// Fourth Function
+// This will interact with DOM.
+function displayMessage(message) {
+  lowOrHi.innerHTML = `<h2> ${message}</h2>`
+}
+
+
+
+function endGame() {
+  userInput.value = ''
+  userInput.setAttribute('disabled', '')
+  p.classList.add('button')
+  p.innerHTML = `<h2 id ="newGame"> Start new Game</h2>`;
+  startOver.appendChild(p)
+  playGame = false
+  newGame();
+}
+
+
+function newGame() {
+  const newGameButton = document.querySelector('#newGame');
+  newGameButton.addEventListener('click', function(e) {
+    randomNumber = parseInt(Math.random() * 100 + 1); 
+    prevGuess = [];
+    numGuess = 1;
+    guessSlot.innerHTML = '';
+    remaining.innerHTML = `${11 - numGuess} `;
+    userInput.removeAttribute('disabled'); 
+    startOver.removeChild(p);
+    playGame = true
+  })
+
+}
+
+
+```
