@@ -48,12 +48,59 @@
     // altkey, ctrlkey, shiftkey, keyCode
 
     // Third approach -> Best Approach
-    document.getElementById('owl').addEventListener('click', function(e){               // whatever event you are listening write in strings.. '' single quotes -> 'click'
-        console.log(e);    
+    document.getElementById('images').addEventListener('click', function(e){               // whatever event you are listening write in strings.. '' single quotes -> 'click'
+        console.log("clicked inside the ul");    
     }, false)
+    // This will get printed when you click on the images means in ul.
 
-    // Event Propagation
+
+
+
+    // Event Propagation --> have two contexts:
+    // 1st is Event Bubling
+    // 2nd is Event Capturing
+    // In market .. in most of the projects .. we use default .. false .. this is Event Bubling
+    // But in some cases we have to also use true .. Event Capturing
     
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked"); 
+        e.stopPropagation()                    // --> this will stop your element from bubbling   
+    }, false)
+    // This will get printed when you specifically click on the owl.
+
+
+    // In Inspect we have seen in console 
+    // owl clicked
+    // clicked inside the ul
+    // so we have seen event propagation -- bubbling up - down to up -- inside to outside
+    // that's why first we clicked on inner element which is "owl clicked"
+    // then on the outer element --> "clicked inside the ul"
+
+
+    /*
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul");    
+    }, true)
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked");    
+    }, true)
+    */
+   // This is capturing mode --> here it goes from outside to inside
+   // clicked inside the ul --> get printed first
+   // owl clicked --> printed second
+
+
+   document.getElementById('google').addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation()
+    console.log("google clicked");
+   }, false)
+
+
+
+
     
 </script>
 </html>
