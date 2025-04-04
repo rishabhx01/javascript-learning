@@ -263,3 +263,93 @@ function newGame() {
 
 
 ```
+
+## Project 5 - Keyboard Check
+
+```javascript
+
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', (e) => {
+  insert.innerHTML = `
+    <div class='color'>
+    <table>
+    <tr>
+      <th>Key</th>
+      <th>Keycode</th> 
+      <th>Code</th>
+    </tr>
+    <tr>
+      <td>${e.key === ' ' ? 'Space' : e.key}</td>
+      <td>${e.keyCode}</td> 
+      <td>${e.code}</td>
+    </tr>
+    
+  </table>
+    </div>
+  `;
+});
+
+```
+
+## Project 6 - Unlimited Background Color Changer
+
+```javascript
+
+// button -> eventListener
+// after every second it should change color so we can apply SetInterval().
+
+// Que -> how to generate random colors
+// Hex -> A hexadecimal number is defined as a number to the base 16, where each digit can range from 0 to F (representing 0 to 15 in decimal). It allows the representation of numbers using the digits 0-9 and A-F.
+
+// generate a random color
+
+const randomColor = function() {
+  const hex = "0123456789ABCDEF"
+  let color = '#'
+  for (let i = 0; i < 6; i++){
+    color += hex[(Math.floor(Math.random() * 16))]
+  }
+  return color;
+};
+
+// console.log(randomColor());
+
+// Now we have to generate a random value
+// we can use Math.random
+
+// console.log(Math.random() * 16);  // we want 0 that's why we are not adding 1 to it.
+
+// console.log(Math.floor(Math.random() * 16));
+
+let intervalId;
+const startChangingColor = function () {
+  // Applying safety check
+  if (!intervalId){
+    intervalId = setInterval(changeBgColor, 1000);
+  }
+  
+  // how to change background color take access of document in document take access of style and in style choose backgroundColor. 
+  function changeBgColor() {
+    document.body.style.backgroundColor = randomColor();
+  }
+
+};
+
+const stopChangingColor = function () {
+  clearInterval(intervalId);
+  intervalId = null;                  // good practice while coding
+};
+
+
+
+document.querySelector('#start').addEventListener
+('click', startChangingColor);
+
+document.querySelector('#stop').addEventListener
+('click', stopChangingColor);
+
+// Tip --> In leetcode - dsa - cp think about edge cases.
+// and in project do projects + think about corner cases.
+
+```
