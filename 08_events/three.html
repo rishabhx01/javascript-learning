@@ -1,0 +1,68 @@
+<!-- 
+Lecture 37 completed 
+Async Javascript Fundamentals full theory.
+
+Synchronous VS Asynchronous
+Execution Context -- from Lecture 25
+Single Threaded VS Multi Threaded
+Blocking Code VS Non-Blocking Code 
+-->
+
+<!-- Lecture 38 Start -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Code JS</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    /*
+    setTimeout(function(){
+        console.log("Rishabh")                       // it will print my name after 2 seconds
+    }, 2000)  
+    
+    // setTimeout means it will take some time and after that it will do whatever you want for one time. 
+    // setInterval means --
+    */
+
+    const sayRishabh = function() {
+        console.log("Rishabh")
+    }
+
+    setTimeout(sayRishabh, 2000)                   // Don't execute sayRishabh(), provide reference
+
+
+    // Let's change the name of h1
+    // document.querySelector('h1').innerHTML = "Best JS Series"
+    
+    
+    // we want this to reflect not immediately but after 2 seconds ..
+    const changeText = function (){
+        document.querySelector('h1').innerHTML = "Best JS Series"
+    }
+    // setTimeout(changeText, 2000)
+    // This is how popups and ads are done on website .. after every 5 second kind of thing using setTimeout(). 
+
+    // We also need to stop this so we have something called clearTimeout(). 
+    // clearTimeout() need reference because there can be multiple setTimeout() may exist in one document. 
+
+    const changeMe = setTimeout(changeText, 2000)
+
+    // clearTimeout(changeMe)
+
+    document.querySelector('#stop').
+    addEventListener('click', function(){
+        clearTimeout(changeMe)
+        console.log("STOPPED")
+    })
+
+
+</script>
+</html>

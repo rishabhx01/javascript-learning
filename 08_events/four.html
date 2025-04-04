@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // Let's study setInterval()
+
+    /*
+    setInterval(function () {
+        console.log("Rishabh", Date.now())
+    }, 5000)
+    */
+
+    // setInterval is printing whatever is written in log after every 5 second and keep on running.
+    
+    // Now Let's make a function for this.
+    const sayDate = function (str) {      // you can pass parameter also str we passed here
+        console.log(str, Date.now())
+    }
+    // setInterval(sayDate, 1000, "hi")
+
+    // Now how to stop this. 
+    // clearInterval() also want some reference
+    // so
+
+    const intervalId = setInterval(sayDate, 1000, "hi")
+    clearInterval(intervalId)
+
+    // Assignment
+    // your task is to use start and stop with setInterval and 
+    // clearInterval when you press start it should start logging when you press stop it should stop.
+</script>
+</html>
+
+<!-- Followed by two projects
+
+Project 5 - Keyboard Check
+Project 6 - Unlimited Background Color Changer
+
+Lecture 38 Completed.
+-->
