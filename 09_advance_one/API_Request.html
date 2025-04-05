@@ -1,0 +1,157 @@
+<!--
+// 🌐 API stands for **Application Programming Interface**
+// It acts as a **communication bridge** between two systems — often frontend and backend.
+//
+// Think of it as a *messenger* or *medium* that allows different software applications to talk to each other.
+//
+// 📱 Examples:
+// - Your frontend (React, HTML, etc.) can talk to your own backend using an API.
+// - Or, your frontend can talk to a third-party service (like weather API, payment gateway, etc.).
+// - Your backend can even call another backend's API.
+//
+// APIs make it possible to:
+// ✅ Send data
+// ✅ Request data
+// ✅ Update or delete data
+//
+// 🧠 In short: API is like a **language** or **agreement** that two systems follow so they can understand each other.
+// It's how software components communicate — securely, reliably, and efficiently.
+
+
+// 🌍 Some well-known public APIs include:
+//
+// 1. GitHub Users API:
+//    https://api.github.com/users/username
+//    👉 This returns detailed information about a GitHub user.
+//    👉 The response is in JSON format — basically a big object containing keys like:
+//       - name
+//       - email
+//       - location
+//       - followers
+//
+//    You can access specific properties in JavaScript using dot notation:
+//    Example: user.name, user.email, etc.
+//
+// 2. Random User API:
+//    https://randomuser.me/
+//    👉 This returns randomly generated user data — good for testing or learning.
+//    👉 You’ll get a nested JSON object with user info like gender, name, location, picture, etc.
+//
+// 📦 JSON (JavaScript Object Notation) is the most common format used for API responses.
+// It’s just structured data — like an object with key-value pairs (and sometimes nested objects or arrays).
+//
+// 🧰 To **read and understand JSON data** easily:
+// Use tools like: https://jsonformatter.org or https://jsonformatter.curiousconcept.com
+//
+// 👉 Steps:
+// - Paste your raw JSON data into the site.
+// - Click "Format" or "Beautify".
+// - You can view the data in different styles: raw text, code view, form, or tree.
+//
+// ✅ The **Tree View** is the easiest to explore complex nested data — 
+it lets you expand/collapse objects and see what’s inside.
+-->
+
+<!--
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest  ---- Read about this
+
+XMLHttpRequest (XHR) objects are used to interact with servers. 
+You can retrieve data from a URL without having to do a full page refresh. 
+This enables a Web page to update just part of a page without disrupting what the user is doing.
+
+https://developer.mozilla.org/en-US/docs/Glossary/AJAX ---- Read about this
+
+XMLHttpRequest: readyState property:
+XMLHttpRequest.readyState values:
+0 - UNSENT:           Client has been created. open() not called yet.
+1 - OPENED:           open() has been called.
+2 - HEADERS_RECEIVED: send() has been called, and headers and status are available.
+3 - LOADING:          Downloading; responseText holds partial data.
+4 - DONE:             The operation is complete.
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState  --- Read about this
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+
+</body>
+<script>
+    // XMLHttpRequest() is a built-in JavaScript object available in browsers.
+    // It is used for asynchronous communication with a server (commonly known as AJAX).
+    // With this, you can "send" and "receive" data without reloading the page.
+    // To use it, you need to create a new object using the "new" keyword:
+    //    let xhr = new XMLHttpRequest();
+
+    // This object handles a fresh request — for every new request, a new object is used.
+
+    // Although there are modern alternatives available today (like fetch() and Axios),
+    // XMLHttpRequest is still widely supported and commonly used, especially in legacy systems.
+
+    const requesUrl = 'https://api.github.com/users/rishabhx01'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requesUrl)                  // The open() method doesn't call itself automatically
+    // console.log(xhr.readyState);                // you can continuously track this
+
+    // For Continuously tracking
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+           // const data = this.responseText
+           const data = JSON.parse(this.responseText)
+           // console.log(this.responseText);         // whenever we talk about current context we use "this"
+           console.log(data);                 
+           console.log(data.following);              // we are extracting data from objects using dot(.)  --> output - undefined
+           console.log(typeof data);                 // Most of the time the response come from url is in the form of string
+           console.log(data.email);
+
+           // convert string into Number
+           // const data = this.responseText --> const data = JSON.parse(this.responseText)
+
+           // Assignment
+           // Extract photo from this object and followers and make a card .. click on button ...
+           // where you can see photo and followers.
+           // console.log(avatar_url);
+
+        }
+    }
+    xhr.send()
+    // open() just prepares the request. It's like dialing a number — the call hasn't started until you press "call" (i.e., send()).
+
+</script>
+</html>
+
+<!--
+// 🔍 console and document are NOT part of core JavaScript.
+// Core JavaScript (as defined by ECMAScript) is just the language specification — it doesn't include browser-specific features.
+//
+// 🛠 console.log is a debugging tool provided by the environment (like a browser or Node.js).
+// It's not part of the language itself — 
+// that's why you don't get console.log in isolated JS environments (like a JS engine without a host).
+//
+// For example: Browsers (like Chrome, Firefox) inject 'console' and 'document' objects.
+// Similarly, Node.js provides 'console', 'require', 'process', etc.
+//
+// 📄 The 'document' object (and methods like document.getElementById) are provided by the browser's DOM API —
+// which is also not part of JavaScript itself. It's part of the web platform (environment).
+//
+// 💡 JavaScript runs inside environments like:
+//    - Browsers (Chrome, Firefox, etc.)
+//    - Node.js (server-side)
+//
+// 🧠 Node.js is an implementation of the V8 JavaScript engine — the same engine that runs in Chrome.
+// V8 is developed by Google, and the full source code is open-source and written in C++:
+// 👉 https://github.com/v8
+// 👉 Source code lives here: https://github.com/v8/v8/tree/main/src
+//
+// 🧵 So essentially, JavaScript is a **high-level wrapper** built over low-level code written in C++.
+// JS engines like V8 compile and optimize your JavaScript to native machine code using C++ under the hood.
+
+-->
